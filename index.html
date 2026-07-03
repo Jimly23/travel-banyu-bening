@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="id">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>SwiftShuttle - Perjalanan Nyaman &amp; Tepat Waktu</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <!-- Tailwind Configuration -->
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-surface": "#191c1e",
+            "inverse-primary": "#bec6e0",
+            "secondary-fixed-dim": "#ffb690",
+            "tertiary-fixed": "#d5e3fd",
+            "outline-variant": "#c6c6cd",
+            "surface-variant": "#e0e3e5",
+            "on-error-container": "#93000a",
+            "on-primary-container": "#7c839b",
+            "tertiary-container": "#0d1c2f",
+            "primary-fixed-dim": "#bec6e0",
+            "surface-container-high": "#e6e8ea",
+            "primary-fixed": "#dae2fd",
+            "on-surface-variant": "#45464d",
+            "on-secondary-fixed-variant": "#783200",
+            "surface-container": "#eceef0",
+            "on-secondary": "#ffffff",
+            "primary-container": "#131b2e",
+            "secondary-container": "#fd761a",
+            "error-container": "#ffdad6",
+            "surface-container-lowest": "#ffffff",
+            "surface": "#f7f9fb",
+            "primary": "#000000",
+            "surface-container-highest": "#e0e3e5",
+            "inverse-on-surface": "#eff1f3",
+            "secondary-fixed": "#ffdbca",
+            "tertiary": "#000000",
+            "on-error": "#ffffff",
+            "surface-dim": "#d8dadc",
+            "surface-bright": "#f7f9fb",
+            "surface-container-low": "#f2f4f6",
+            "error": "#ba1a1a",
+            "on-primary-fixed": "#131b2e",
+            "on-background": "#191c1e",
+            "tertiary-fixed-dim": "#b9c7e0",
+            "background": "#f7f9fb",
+            "on-primary-fixed-variant": "#3f465c",
+            "on-tertiary-fixed": "#0d1c2f",
+            "secondary": "#9d4300",
+            "on-tertiary": "#ffffff",
+            "on-tertiary-container": "#76859b",
+            "on-primary": "#ffffff",
+            "surface-tint": "#565e74",
+            "inverse-surface": "#2d3133",
+            "on-secondary-container": "#5c2400",
+            "outline": "#76777d",
+            "on-secondary-fixed": "#341100",
+            "on-tertiary-fixed-variant": "#3a485c"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "margin-mobile": "16px",
+            "base": "4px",
+            "gutter": "24px",
+            "container-max": "1280px",
+            "stack-md": "16px",
+            "stack-lg": "32px",
+            "stack-sm": "8px",
+            "margin-desktop": "48px"
+          },
+          "fontFamily": {
+            "headline-lg": ["Inter", "sans-serif"],
+            "label-md": ["Inter", "sans-serif"],
+            "headline-xl": ["Inter", "sans-serif"],
+            "label-sm": ["Inter", "sans-serif"],
+            "body-lg": ["Inter", "sans-serif"],
+            "body-md": ["Inter", "sans-serif"],
+            "headline-md": ["Inter", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .travel-card {
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .travel-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .glass-nav {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+  </style>
+</head>
+
+<body class="bg-background text-on-surface font-body-md">
+  <!-- 1. Navbar -->
+  <nav
+    class="fixed top-0 w-full z-50 bg-surface/90 glass-nav border-b border-outline-variant shadow-sm h-20 transition-all duration-300">
+    <div class="flex justify-between items-center h-full px-margin-desktop max-w-container-max mx-auto">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-secondary text-3xl"
+          style="font-variation-settings: 'FILL' 1;">shuffle</span>
+        <span class="font-headline-md text-headline-md font-bold text-secondary">SwiftShuttle</span>
+      </div>
+      <div class="hidden md:flex items-center gap-8">
+        <a class="text-secondary font-bold border-b-2 border-secondary pb-1 font-body-md transition-colors duration-200"
+          href="#layanan">Layanan</a>
+        <a class="text-on-surface-variant hover:text-secondary font-body-md transition-colors duration-200"
+          href="#unit">Unit</a>
+        <a class="text-on-surface-variant hover:text-secondary font-body-md transition-colors duration-200"
+          href="#rute">Rute</a>
+        <a class="text-on-surface-variant hover:text-secondary font-body-md transition-colors duration-200"
+          href="#tarif">Tarif</a>
+        <a class="text-on-surface-variant hover:text-secondary font-body-md transition-colors duration-200"
+          href="#testimoni">Testimoni</a>
+      </div>
+      <button
+        class="bg-secondary-container text-on-secondary-container px-6 py-2.5 rounded-full font-label-md font-bold hover:scale-105 active:scale-95 transition-transform">
+        Pesan Sekarang
+      </button>
+    </div>
+  </nav>
+  <!-- 2. Hero -->
+  <section class="relative pt-20 overflow-hidden">
+    <div
+      class="max-w-container-max mx-auto px-margin-desktop py-stack-lg min-h-[819px] flex flex-col md:flex-row items-center gap-gutter">
+      <div class="flex-1 space-y-stack-md z-10 text-center md:text-left">
+        <span
+          class="inline-block px-4 py-1 rounded-full bg-secondary/10 text-secondary font-label-sm tracking-wider uppercase">Layanan
+          Travel Premium</span>
+        <h1 class="font-headline-xl text-headline-xl text-on-surface leading-tight">
+          Perjalanan Nyaman, <br class="hidden md:block" /> <span class="text-secondary">Tepat Waktu</span> Setiap Hari
+        </h1>
+        <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+          Solusi travel antar-jemput profesional untuk kebutuhan harian Anda. Nikmati keamanan kelas utama dengan armada
+          terbaru kami.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start">
+          <a class="bg-secondary-container text-on-secondary-container px-8 py-4 rounded-lg font-bold flex items-center justify-center gap-2 hover:shadow-lg transition-shadow"
+            href="#rute">
+            Lihat Rute <span class="material-symbols-outlined">arrow_forward</span>
+          </a>
+          <a class="border border-outline text-on-surface px-8 py-4 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-surface-container transition-colors"
+            href="#kontak">
+            Hubungi Kami <span class="material-symbols-outlined">chat</span>
+          </a>
+        </div>
+      </div>
+      <div class="flex-1 relative w-full h-[400px] md:h-[500px]">
+        <div
+          class="absolute inset-0 bg-gradient-to-tr from-secondary/20 to-transparent rounded-full blur-3xl opacity-50 -z-10">
+        </div>
+        <img class="w-full h-full object-contain drop-shadow-2xl"
+          data-alt="A side-profile high-resolution photograph of a pristine white luxury Toyota Hiace commuter van driving through a modern urban expressway at sunset. The lighting is warm and cinematic, highlighting the clean reflective body of the vehicle. The background features blurred city lights and sleek architecture, emphasizing speed, punctuality, and professional corporate logistics. The overall aesthetic is clean, high-contrast, and dependable."
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCatYHqj7Y4NkgSFmBqzn3A8zp-8XgwW1n4HdLHeSMfeiyCj4o5d5VBgFhnQ2knzcfa9L9ETkG5Mry6FHsZb7jb-pobazauuOr3n8mHakjY5rKC1SKBgFDLrlbyzFZMxTzntPFU46nSklJ7rQVO8Oge27Y3LO3TuTMVv0Dozcizr0kH4e3Z4WlOg6I2YFhjDmvZTFGkKqaQ9V8GKNfBYNfGUrOmW19Iag_M_bDrSIwnBG30PXglfnIOcnhGIFfJibBSt6jErBjQTnjT" />
+      </div>
+    </div>
+  </section>
+  <!-- 3. About -->
+  <section class="bg-surface-container-lowest py-24">
+    <div class="max-w-container-max mx-auto px-margin-desktop">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="space-y-4 pt-12">
+            <div class="aspect-square bg-surface-container-high rounded-xl overflow-hidden shadow-sm">
+              <img class="w-full h-full object-cover"
+                data-alt="A professional Indonesian shuttle driver wearing a clean navy blue uniform and a friendly smile, standing next to a modern silver shuttle van. The background is a well-lit corporate terminal. The shot is medium-close, focusing on reliability and hospitality. The lighting is bright and professional, suggesting a high-end service environment."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0hwyCW0j6VTjHCeluYBTN-B3ycsb9FizCKueHJKa0eNQUv1CazdftCjqny_OKDHFov9NRFGc1zZfUXcZRh2M7t1SC7VJEZ-ruMH7qgdGU9_YpxeoTUx6m7ACdKkSvRBSTLPGO5ZkDyNhgxFI_XJQLZBQObrhzn5X-5jX88-5MByXTUkMlDPoks-wRaLNcrlYNflHIKZZm0CUETJAfJCI-mT6g9E0U5xu8iZXDH5CLWewlK130JxsmTwCGv6fGHLfX4mXn8W-C-HAT" />
+            </div>
+            <div class="p-6 bg-secondary text-on-secondary rounded-xl">
+              <p class="text-4xl font-bold">10+</p>
+              <p class="text-sm">Tahun Melayani</p>
+            </div>
+          </div>
+          <div class="space-y-4">
+            <div class="p-6 bg-primary-container text-on-primary-container rounded-xl">
+              <p class="text-4xl font-bold">24/7</p>
+              <p class="text-sm">Siaga Customer Support</p>
+            </div>
+            <div class="aspect-[3/4] bg-surface-container-high rounded-xl overflow-hidden shadow-sm">
+              <img class="w-full h-full object-cover"
+                data-alt="Interior of a luxury Toyota Hiace commuter van showcasing clean, cream-colored leather reclining seats, spacious legroom, and built-in USB charging ports. The cabin is bathed in soft, cool interior LED lighting. The perspective is from the passenger's point of view, emphasizing comfort, cleanliness, and a premium travel experience for long-distance commuting."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqmJxpRe2yrfE2d_YKsBRQjycZRlzhiWDcCisTSlyd2zH9hD2ofgMHIV2yngXvah5U30E12rHZCHWIQktNNJp9Bp8R5O2AZ8JA03zAQ0W8BPEVTseBxth1Tu4B1jtOniVWJnIKucZp8FZXTHYZGM7jmovfJBY-H_701OIcnPD154ZTTyUZtH0Sg-PY6xbGl90XoYlPa7CMdR1-nzwOkevuysmcpiIkm3pBHJEWiT8jo-NmgPF0HPVVnyOaPSqbJ1PpAwfCFVsOtZFP" />
+            </div>
+          </div>
+        </div>
+        <div class="space-y-stack-md">
+          <h2 class="font-headline-lg text-headline-lg text-on-surface">Komitmen Kami pada <span
+              class="text-secondary">Keamanan &amp; Ketepatan</span></h2>
+          <p class="font-body-md text-on-surface-variant leading-relaxed">
+            Di SwiftShuttle, kami memahami bahwa waktu Anda sangat berharga. Itulah sebabnya setiap operasional kami
+            dirancang dengan presisi logistik yang tinggi. Mulai dari pemeliharaan rutin armada hingga pelatihan
+            intensif pengemudi, kami memastikan setiap kilometer yang Anda tempuh bersama kami adalah definisi dari
+            kenyamanan.
+          </p>
+          <ul class="space-y-4">
+            <li class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-secondary"
+                style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              <span class="font-body-md font-semibold">Pengemudi Berlisensi &amp; Berpengalaman</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-secondary"
+                style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              <span class="font-body-md font-semibold">Pemantauan GPS Real-Time</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-secondary"
+                style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              <span class="font-body-md font-semibold">Armada Terbaru dengan Protokol Sanitasi Ketat</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- 4. Layanan -->
+  <section class="py-24 bg-surface" id="layanan">
+    <div class="max-w-container-max mx-auto px-margin-desktop">
+      <div class="text-center mb-16 space-y-4">
+        <h2 class="font-headline-lg text-headline-lg">Layanan Unggulan Kami</h2>
+        <div class="w-20 h-1 bg-secondary mx-auto"></div>
+      </div>
+      <div class="grid md:grid-cols-3 gap-gutter">
+        <div class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant travel-card">
+          <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center text-secondary mb-6">
+            <span class="material-symbols-outlined text-3xl">flight_takeoff</span>
+          </div>
+          <h3 class="font-headline-md text-headline-md mb-3">Antar-Jemput Bandara</h3>
+          <p class="text-on-surface-variant mb-6">Layanan jemput tepat waktu dari rumah Anda langsung ke terminal
+            keberangkatan Bandara Internasional.</p>
+          <a class="text-secondary font-bold inline-flex items-center gap-1 hover:gap-3 transition-all" href="#">Pesan
+            Sekarang <span class="material-symbols-outlined">trending_flat</span></a>
+        </div>
+        <div class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant travel-card">
+          <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center text-secondary mb-6">
+            <span class="material-symbols-outlined text-3xl">distance</span>
+          </div>
+          <h3 class="font-headline-md text-headline-md mb-3">Travel Antar Kota</h3>
+          <p class="text-on-surface-variant mb-6">Rute reguler setiap hari menghubungkan kota-kota besar dengan jadwal
+            yang fleksibel dan efisien.</p>
+          <a class="text-secondary font-bold inline-flex items-center gap-1 hover:gap-3 transition-all" href="#">Cek
+            Jadwal <span class="material-symbols-outlined">trending_flat</span></a>
+        </div>
+        <div class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant travel-card">
+          <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center text-secondary mb-6">
+            <span class="material-symbols-outlined text-3xl">local_post_office</span>
+          </div>
+          <h3 class="font-headline-md text-headline-md mb-3">Titipan Paket Kilat</h3>
+          <p class="text-on-surface-variant mb-6">Kirim paket dokumen atau barang kecil Anda dalam hitungan jam antar
+            kota melalui armada shuttle kami.</p>
+          <a class="text-secondary font-bold inline-flex items-center gap-1 hover:gap-3 transition-all" href="#">Info
+            Tarif <span class="material-symbols-outlined">trending_flat</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- 5. Unit -->
+  <section class="py-24 bg-primary-container text-on-primary-container" id="unit">
+    <div class="max-w-container-max mx-auto px-margin-desktop">
+      <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+        <div class="space-y-4">
+          <h2 class="font-headline-lg text-headline-lg text-white">Armada Pilihan</h2>
+          <p class="text-on-primary-container/80 max-w-lg">Kami menggunakan kendaraan terbaru yang dirawat secara
+            berkala demi menjamin kenyamanan maksimal Anda.</p>
+        </div>
+        <div class="flex gap-4">
+          <button
+            class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors">
+            <span class="material-symbols-outlined text-white">chevron_left</span>
+          </button>
+          <button
+            class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors">
+            <span class="material-symbols-outlined text-white">chevron_right</span>
+          </button>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-12">
+        <div class="group">
+          <div class="overflow-hidden rounded-2xl mb-8">
+            <img class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700"
+              data-alt="A clean, front-three-quarter view of a silver Toyota Hiace Premio commuter van parked in a modern plaza. The image highlights the vehicle's large windows, streamlined design, and professional livery. The setting is bright daylight, creating sharp reflections and a feeling of freshness and top-tier maintenance. Modern corporate vibes."
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0_Mh37Z53HPRRLztj0EYPgBXPEOzRAyYTMscKfxBaeAFADLXbYuReckzVJorfnHjhFL7QJQZaQ-8DOx4NnxYcxeaO17xkJVOyHKF5bvZuFQM-JI80ip-xSwwk15vDZa_yb4eXFb0rU7GL-x2-psvWkEF9JrI6HsdJAufNft2jFEZqh5szpUkz2jxVrktHEXtCivApD51jwBVaczkaquWbisi2utHw7-xE_EU4HeMRvH-VreuLHp3jMVM3oxfFR4lR06Lo2_gUSVA_" />
+          </div>
+          <div class="flex justify-between items-start mb-6">
+            <div>
+              <h3 class="text-2xl font-bold text-white">Toyota Hiace Premio</h3>
+              <p class="text-secondary-fixed">Kapasitas 14 Seat</p>
+            </div>
+            <div class="bg-secondary-container text-on-secondary-container px-4 py-1 rounded text-sm font-bold">
+              Terpopuler</div>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <span class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm"><span
+                class="material-symbols-outlined text-sm">ac_unit</span> Full AC</span>
+            <span class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm"><span
+                class="material-symbols-outlined text-sm">event_seat</span> Reclining Seat</span>
+            <span class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm"><span
+                class="material-symbols-outlined text-sm">usb</span> USB Charger</span>
+            <span class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm"><span
+                class="material-symbols-outlined text-sm">wifi</span> Wi-Fi Free</span>
+          </div>
+        </div>
+        <div class="group">
+          <div class="overflow-hidden rounded-2xl mb-8">
+            <img class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700"
+              data-alt="A luxurious dark gray Toyota Innova Zenix parked in front of a high-end hotel lobby. The car looks polished and reflective under warm architectural lighting. The composition focuses on the premium, private aspect of the vehicle, suitable for executive transfers. Sophisticated, exclusive, and high-status aesthetic."
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZ7dxv5oTEyh-2ddv4Mrz3_6v-p6lxTQW6wPSPN_PDO6PBd48OsBDLOytC_ZkqKl8WjiDaS0dL-eEJEBHURoL0tZeQWwIqUV-eK7CEfPIuw3BTKqNDVFisX9XeMChoLmTnr8lESbKrGQotoJJkFr0bla2MnKcSzBEyMcN_goUE-pz_DeWC8r5VOHR7JUUZg95VLOocKcVwm6IjSyUu8G_lrFZ8yXZLnaqF7RHLkrm-bgr89tErSKVyw1DcK3xGEl8quVhPd5Ft6PIh" />
+          </div>
+          <div class="flex justify-between items-start mb-6">
+            <div>
+              <h3 class="text-2xl font-bold text-white">Toyota Innova Zenix</h3>
+              <p class="text-secondary-fixed">Kapasitas 6 Seat (Private)</p>
+            </div>
+            <div class="bg-white/10 text-white px-4 py-1 rounded text-sm font-bold">Premium</div>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <span class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm"><span
+                class="material-symbols-outlined text-sm">ac_unit</span> Dual Zone AC</span>
+            <span class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm"><span
+                class="material-symbols-outlined text-sm">chair</span> Captain Seat</span>
+            <span class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm"><span
+                class="material-symbols-outlined text-sm">electric_bolt</span> Fast Charging</span>
+            <span class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm"><span
+                class="material-symbols-outlined text-sm">tv</span> Entertainment</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- 6. Rute -->
+  <section class="py-24 bg-surface-container-low overflow-hidden" id="rute">
+    <div class="max-w-container-max mx-auto px-margin-desktop">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="space-y-8">
+          <div>
+            <h2 class="font-headline-lg text-headline-lg mb-4">Rute Terpopuler</h2>
+            <p class="text-on-surface-variant">Kami melayani berbagai rute strategis di seluruh pulau Jawa dengan jadwal
+              keberangkatan setiap jam.</p>
+          </div>
+          <div class="space-y-4">
+            <div
+              class="flex items-center justify-between p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border-l-4 border-secondary">
+              <div>
+                <h4 class="font-bold text-lg">Jakarta — Bandung</h4>
+                <p class="text-sm text-on-surface-variant">Estimasi 2.5 - 3 Jam (Via Tol Cipularang)</p>
+              </div>
+              <span class="material-symbols-outlined text-secondary">arrow_circle_right</span>
+            </div>
+            <div
+              class="flex items-center justify-between p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border-l-4 border-secondary">
+              <div>
+                <h4 class="font-bold text-lg">Semarang — Yogyakarta</h4>
+                <p class="text-sm text-on-surface-variant">Estimasi 3 - 3.5 Jam (Via Tol Trans Jawa)</p>
+              </div>
+              <span class="material-symbols-outlined text-secondary">arrow_circle_right</span>
+            </div>
+            <div
+              class="flex items-center justify-between p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border-l-4 border-secondary">
+              <div>
+                <h4 class="font-bold text-lg">Surabaya — Malang</h4>
+                <p class="text-sm text-on-surface-variant">Estimasi 1.5 - 2 Jam (Via Tol Mapan)</p>
+              </div>
+              <span class="material-symbols-outlined text-secondary">arrow_circle_right</span>
+            </div>
+          </div>
+          <button class="text-secondary font-bold flex items-center gap-2">Lihat Semua 25+ Rute <span
+              class="material-symbols-outlined">expand_more</span></button>
+        </div>
+        <div class="relative">
+          <div class="aspect-square bg-slate-200 rounded-3xl overflow-hidden shadow-2xl">
+            <div class="w-full h-full bg-cover bg-center" data-location="Java Island, Indonesia"
+              style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDUeSiQZsav6cabe1W6YVrsm5AmL39yOUZUqLoGWD3rjDTQFd5W_0DvONKh6E1OMfWPmu0u1GjBznHnTnWUNEJCRVSMUptz9FMAnRkPX7JwIfZezVkWVBKnf1CO8gzSacE8M8I8yHOyKVqYdzzHJJrb0AyFjEx6i5-agRJnkE_HRFT9gs5-LGk5rtEP1FVq3ftJkk1jKJ0cRU2yRJUqBMz8yssRFd-FJGEzdxCBkF00MxIAs99Wt8MSd52TzmM_WFRoI5WUD92lqeTd')">
+            </div>
+            <div class="absolute inset-0 bg-secondary/5 pointer-events-none"></div>
+            <!-- Mock Map Overlay -->
+            <div class="absolute top-1/4 left-1/3 w-4 h-4 bg-secondary rounded-full animate-ping"></div>
+            <div class="absolute top-1/4 left-1/3 w-4 h-4 bg-secondary rounded-full"></div>
+            <div class="absolute bottom-1/3 right-1/4 w-4 h-4 bg-secondary rounded-full"></div>
+          </div>
+          <div class="absolute -bottom-8 -left-8 bg-white p-6 rounded-2xl shadow-xl max-w-xs">
+            <div class="flex items-center gap-4 mb-2">
+              <span class="material-symbols-outlined text-green-600">navigation</span>
+              <p class="font-bold">Real-time Tracking</p>
+            </div>
+            <p class="text-sm text-on-surface-variant">Pantau posisi armada kami secara langsung melalui aplikasi.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- 7. Testimoni -->
+  <section class="py-24 bg-surface-container-lowest" id="testimoni">
+    <div class="max-w-container-max mx-auto px-margin-desktop text-center">
+      <h2 class="font-headline-lg text-headline-lg mb-16">Apa Kata Pelanggan Kami</h2>
+      <div class="grid md:grid-cols-3 gap-gutter">
+        <div class="p-8 bg-surface rounded-2xl text-left relative">
+          <span class="material-symbols-outlined text-5xl text-secondary/20 absolute top-4 right-8">format_quote</span>
+          <div class="flex gap-1 text-orange-500 mb-4">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          </div>
+          <p class="font-body-md text-on-surface-variant mb-8 italic">"Paling suka sama SwiftShuttle karena armadanya
+            bersih banget dan pengemudinya sangat sopan. Selalu sampai tepat waktu bahkan sering lebih awal."</p>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-slate-300 overflow-hidden">
+              <img class="w-full h-full object-cover"
+                data-alt="A close-up portrait of a professional-looking Indonesian woman in her late 20s, wearing casual business attire. She has a bright, satisfied smile and look of confidence. The background is a soft-focus urban park setting with natural daylight. Professional portrait photography style."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBq_vMk2T9p-dKCL9SJl6XrY-po7oNW_8lqZF6t5xDN3a7qhwyf6IPI3HUJdQIM25Ip5JUS9NMz5cAz9_L9jATYWbnWTL2xM5p85PmBOVqmCBRE4EP1AOxTnwcBYTciksm_FEjirBRNZABxhLjpihhpO9rweOoGpXx6ydzRLM_oBsgfva0vXTjFsOkjIyDZCOuHZ-Rbdkd_edRyaY-pQWRWTL-C4kMOmQI6jHGrh3EBHY-vcXBpEMFLEBKd9Xz2aSO3q8GvQRFubF8c" />
+            </div>
+            <div>
+              <p class="font-bold">Anisa Putri</p>
+              <p class="text-xs text-on-surface-variant">Karyawan Swasta</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-8 bg-surface rounded-2xl text-left relative border-2 border-secondary/10">
+          <span class="material-symbols-outlined text-5xl text-secondary/20 absolute top-4 right-8">format_quote</span>
+          <div class="flex gap-1 text-orange-500 mb-4">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          </div>
+          <p class="font-body-md text-on-surface-variant mb-8 italic">"Layanan bandara jempolan! Nggak perlu pusing
+            mikirin parkir atau telat pesawat. Driver sudah standby 15 menit sebelum jadwal. Sangat direkomendasikan!"
+          </p>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-slate-300 overflow-hidden">
+              <img class="w-full h-full object-cover"
+                data-alt="A portrait of a middle-aged Indonesian businessman in a crisp white shirt, standing in a bright modern office lobby. He has a warm and trustworthy expression. High-quality corporate portrait photography, bright lighting, emphasizing reliability and professional satisfaction."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPJbnAth0EoI9b17WBTYuOiIwl2yddU5MWu2-qP150FG5ZSC3bFd4ex-nOfx8DxYPip6GMDXIfkVoalP2Sifw1cOifK2ZQcuZYtir2UrL3I7eNiBhn9gEnbJH9ycjDhV1MJtxzPUpUuzEzwJfZS0I4yuPGBiZguTMehdOezc8VtR1OqnvZFK9RJaksip0WnujuJgmfbDNtDdjoZXJZRLfspZbiTEufUOe1tSsHRSjSgNf06xZ9yEo-Wiybb0hw94Hf_T59JvflGe8N" />
+            </div>
+            <div>
+              <p class="font-bold">Budi Santoso</p>
+              <p class="text-xs text-on-surface-variant">Traveler Business</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-8 bg-surface rounded-2xl text-left relative">
+          <span class="material-symbols-outlined text-5xl text-secondary/20 absolute top-4 right-8">format_quote</span>
+          <div class="flex gap-1 text-orange-500 mb-4">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          </div>
+          <p class="font-body-md text-on-surface-variant mb-8 italic">"Sering titip paket kilat lewat SwiftShuttle.
+            Barangnya aman sampai tujuan dan harganya jauh lebih terjangkau dibanding ekspedisi biasa untuk sehari
+            sampai."</p>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-slate-300 overflow-hidden">
+              <img class="w-full h-full object-cover"
+                data-alt="A cheerful young Indonesian man in his early 20s, wearing a fashionable olive green jacket, looking at the camera with a thumbs up. He looks happy and modern. Daylight lighting, outdoor urban background, vibrant and energetic mood."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgR3z7gRTEFj6uKHcdNNx2EGVXd88GbBRfN0lu9pOBOX0xR5FvsCy-H5J-88kwT9z4qGD1xkQmtIVtnGoEg0jr_9xfQNJ-c_N2KlWRMnuEHJJzcOao6ZN5iHwfZvgtF0T8DN3UUnjcY8zZA851C4NEC2T3yM7d8a82z3LItBE-N3eqztwWjE97FuG9rmOMK7P1ezqaixmFkAKa8JFq154eN-1q4ddpZcT99r-TJ4WVaufuSefEw0sAQeLJ3WoJjQA-Yx1UNe3OJLmp" />
+            </div>
+            <div>
+              <p class="font-bold">Dimas Arya</p>
+              <p class="text-xs text-on-surface-variant">Online Shop Owner</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- 8. Tarif -->
+  <section class="py-24 bg-surface" id="tarif">
+    <div class="max-w-container-max mx-auto px-margin-desktop">
+      <div class="text-center mb-16">
+        <h2 class="font-headline-lg text-headline-lg">Tarif Transparan</h2>
+        <p class="text-on-surface-variant">Harga flat tanpa biaya tersembunyi. Termasuk asuransi perjalanan.</p>
+      </div>
+      <div class="bg-white rounded-3xl overflow-hidden shadow-xl border border-outline-variant">
+        <table class="w-full text-left">
+          <thead class="bg-primary-container text-white">
+            <tr>
+              <th class="p-6 font-bold">Rute Perjalanan</th>
+              <th class="p-6 font-bold">Unit Kendaraan</th>
+              <th class="p-6 font-bold">Jenis Layanan</th>
+              <th class="p-6 font-bold text-right">Mulai Dari</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-outline-variant">
+            <tr class="hover:bg-surface-container transition-colors">
+              <td class="p-6">Jakarta — Bandung (PP)</td>
+              <td class="p-6">Hiace Premio</td>
+              <td class="p-6"><span
+                  class="px-3 py-1 bg-secondary/10 text-secondary rounded-full text-xs font-bold uppercase">Executive</span>
+              </td>
+              <td class="p-6 text-right font-bold text-xl">Rp 150.000</td>
+            </tr>
+            <tr class="hover:bg-surface-container transition-colors">
+              <td class="p-6">Jakarta — Bandara Soetta</td>
+              <td class="p-6">Innova Zenix</td>
+              <td class="p-6"><span
+                  class="px-3 py-1 bg-primary-container/10 text-primary-container rounded-full text-xs font-bold uppercase">Private</span>
+              </td>
+              <td class="p-6 text-right font-bold text-xl">Rp 350.000</td>
+            </tr>
+            <tr class="hover:bg-surface-container transition-colors">
+              <td class="p-6">Semarang — Yogyakarta</td>
+              <td class="p-6">Hiace Premio</td>
+              <td class="p-6"><span
+                  class="px-3 py-1 bg-secondary/10 text-secondary rounded-full text-xs font-bold uppercase">Executive</span>
+              </td>
+              <td class="p-6 text-right font-bold text-xl">Rp 120.000</td>
+            </tr>
+            <tr class="hover:bg-surface-container transition-colors">
+              <td class="p-6">Surabaya — Malang</td>
+              <td class="p-6">Hiace Premio</td>
+              <td class="p-6"><span
+                  class="px-3 py-1 bg-secondary/10 text-secondary rounded-full text-xs font-bold uppercase">Executive</span>
+              </td>
+              <td class="p-6 text-right font-bold text-xl">Rp 100.000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-center mt-8 text-on-surface-variant text-sm">*Tarif sewaktu-waktu dapat berubah tergantung
+        ketersediaan seat dan hari libur nasional.</p>
+    </div>
+  </section>
+  <!-- 9. Kontak -->
+  <section class="py-24 bg-surface-container-high" id="kontak">
+    <div class="max-w-container-max mx-auto px-margin-desktop">
+      <div class="grid lg:grid-cols-2 gap-gutter bg-white rounded-3xl overflow-hidden shadow-2xl">
+        <div class="p-12 space-y-8">
+          <div>
+            <h2 class="font-headline-lg text-headline-lg mb-4">Mulai Perjalanan Anda</h2>
+            <p class="text-on-surface-variant">Isi form di bawah ini atau hubungi kami via WhatsApp untuk reservasi
+              cepat.</p>
+          </div>
+          <form class="space-y-6">
+            <div class="space-y-2">
+              <label class="font-label-md">Nama Lengkap</label>
+              <div class="relative">
+                <span
+                  class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/50">person</span>
+                <input
+                  class="w-full pl-12 pr-4 py-3 rounded-lg border border-outline-variant focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
+                  placeholder="Masukkan nama Anda" type="text" />
+              </div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label class="font-label-md">No. WhatsApp</label>
+                <div class="relative">
+                  <span
+                    class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/50">call</span>
+                  <input
+                    class="w-full pl-12 pr-4 py-3 rounded-lg border border-outline-variant focus:border-secondary outline-none transition-all"
+                    placeholder="0812..." type="tel" />
+                </div>
+              </div>
+              <div class="space-y-2">
+                <label class="font-label-md">Pilih Rute</label>
+                <div class="relative">
+                  <span
+                    class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/50">map</span>
+                  <select
+                    class="w-full pl-12 pr-4 py-3 rounded-lg border border-outline-variant focus:border-secondary appearance-none bg-white">
+                    <option>Jakarta - Bandung</option>
+                    <option>Jakarta - Bandara</option>
+                    <option>Semarang - Jogja</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <button class="w-full py-4 bg-primary text-white rounded-lg font-bold hover:bg-on-surface transition-colors"
+              type="submit">Kirim Permintaan Booking</button>
+          </form>
+          <div class="flex items-center gap-4 pt-6 border-t border-outline-variant">
+            <span class="text-on-surface-variant">Atau klik:</span>
+            <a class="flex items-center gap-2 px-6 py-3 bg-[#25D366] text-white rounded-full font-bold hover:scale-105 transition-transform"
+              href="#">
+              <span class="material-symbols-outlined">chat</span> Hubungi via WhatsApp
+            </a>
+          </div>
+        </div>
+        <div class="bg-primary-container relative min-h-[400px]">
+          <div class="absolute inset-0 grayscale opacity-50 contrast-125">
+            <div class="w-full h-full bg-cover bg-center" data-location="Jakarta, Indonesia"
+              style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCAlVh130yfa5PmhV7zRPimJi8b8maN88zVTCFTF3IwFq_aVZUIgzTzSsaqlFAyq9Lq-8COTONqklQLcMnuOE6P27fNCzAZrU6-ujsJqhHqtzZMEg8zHe96W3ZRFhwy8XJ9kGmqmbO-_L3fOpsYo53_w72PAxCkbS01_4ZbS2sjh8W5J0PaBb9Ds4MS7rp6dgd7iJqbE90V0bUtMmGhVlAamVWMVXjBvlTytXlwSkC1WKfX3JNmRVGgkSKXHtg5kwFkhQ2f2zcrrsTA')">
+            </div>
+          </div>
+          <div class="absolute bottom-12 left-12 right-12 p-8 bg-white/90 backdrop-blur rounded-2xl space-y-4">
+            <div class="flex gap-4">
+              <span class="material-symbols-outlined text-secondary">location_on</span>
+              <div>
+                <p class="font-bold">Kantor Pusat SwiftShuttle</p>
+                <p class="text-sm text-on-surface-variant">Jl. Sudirman No. 45, Jakarta Selatan, Indonesia</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <span class="material-symbols-outlined text-secondary">mail</span>
+              <div>
+                <p class="font-bold">Email Support</p>
+                <p class="text-sm text-on-surface-variant">info@swiftshuttle.co.id</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- 10. Footer -->
+  <footer class="bg-primary-container text-on-primary-container py-24">
+    <div class="max-w-container-max mx-auto px-margin-desktop">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-20">
+        <div class="space-y-6">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary text-3xl">shuffle</span>
+            <span class="font-headline-md text-headline-md font-bold text-on-primary">SwiftShuttle</span>
+          </div>
+          <p class="text-on-primary-container/80 text-sm leading-relaxed">
+            Layanan transportasi antar-jemput profesional dengan fokus pada ketepatan waktu, kenyamanan, dan keselamatan
+            penumpang di setiap perjalanan.
+          </p>
+          <div class="flex gap-4">
+            <a class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-secondary hover:border-secondary transition-all"
+              href="#">
+              <span class="material-symbols-outlined text-sm">public</span>
+            </a>
+            <a class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-secondary hover:border-secondary transition-all"
+              href="#">
+              <span class="material-symbols-outlined text-sm">share</span>
+            </a>
+            <a class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-secondary hover:border-secondary transition-all"
+              href="#">
+              <span class="material-symbols-outlined text-sm">notifications</span>
+            </a>
+          </div>
+        </div>
+        <div class="space-y-6">
+          <h4 class="text-on-primary font-bold">Perusahaan</h4>
+          <ul class="space-y-4">
+            <li><a
+                class="text-on-primary-container/80 hover:text-on-primary hover:underline transition-all font-body-md"
+                href="#">Tentang Kami</a></li>
+            <li><a
+                class="text-on-primary-container/80 hover:text-on-primary hover:underline transition-all font-body-md"
+                href="#">Karir</a></li>
+            <li><a
+                class="text-on-primary-container/80 hover:text-on-primary hover:underline transition-all font-body-md"
+                href="#">Berita &amp; Media</a></li>
+            <li><a
+                class="text-on-primary-container/80 hover:text-on-primary hover:underline transition-all font-body-md"
+                href="#">Kerjasama Mitra</a></li>
+          </ul>
+        </div>
+        <div class="space-y-6">
+          <h4 class="text-on-primary font-bold">Dukungan</h4>
+          <ul class="space-y-4">
+            <li><a
+                class="text-on-primary-container/80 hover:text-on-primary hover:underline transition-all font-body-md"
+                href="#">Bantuan</a></li>
+            <li><a
+                class="text-on-primary-container/80 hover:text-on-primary hover:underline transition-all font-body-md"
+                href="#">Pusat Informasi</a></li>
+            <li><a
+                class="text-on-primary-container/80 hover:text-on-primary hover:underline transition-all font-body-md"
+                href="#">Kebijakan Privasi</a></li>
+            <li><a
+                class="text-on-primary-container/80 hover:text-on-primary hover:underline transition-all font-body-md"
+                href="#">Syarat &amp; Ketentuan</a></li>
+          </ul>
+        </div>
+        <div class="space-y-6">
+          <h4 class="text-on-primary font-bold">Newsletter</h4>
+          <p class="text-sm text-on-primary-container/80">Dapatkan info promo rute baru setiap bulannya.</p>
+          <div class="relative">
+            <input
+              class="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white focus:ring-1 focus:ring-secondary focus:border-secondary outline-none"
+              placeholder="Email Anda" type="email" />
+            <button class="absolute right-2 top-1/2 -translate-y-1/2 text-secondary">
+              <span class="material-symbols-outlined">send</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-on-primary-container/60">
+        <p>© 2024 SwiftShuttle Logistics. Seluruh Hak Cipta Dilindungi.</p>
+        <div class="flex gap-8">
+          <a href="#">Sitemap</a>
+          <a href="#">Security</a>
+          <a href="#">Compliance</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    // Micro-interaction for Navbar change on scroll
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 50) {
+        nav.classList.add('h-16', 'shadow-md');
+        nav.classList.remove('h-20', 'shadow-sm');
+      } else {
+        nav.classList.add('h-20', 'shadow-sm');
+        nav.classList.remove('h-16', 'shadow-md');
+      }
+    });
+
+    // Simple smooth scroll implementation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
